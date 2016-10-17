@@ -1,12 +1,120 @@
-<script type="text/x-handlebars-template" id="template-room-tab">
-    <li class="lcb-tab lcb-tab-room" data-id="{{id}}">
-        <a href="#!/room/{{id}}">
-            <span class="lcb-tab-title">{{name}}</span>
-            <span class="lcb-tab-alerts">
-                <span class="lcb-tab-alerts-mentions"></span>
-                <span class="lcb-tab-alerts-total"></span>
-            </span>
-            <span class="lcb-tab-close">&times;</span>
-        </a>
-    </li>
-</script>
+#include <iostream>
+using namespace std;
+
+void display(double mainarr[], int arrsize)
+{
+	for (int i = 0; i < arrsize; i++)
+	{
+		cout << mainarr[i] << endl;
+	}
+	cout << endl;
+}
+
+
+void sum(double mainarr[], int arrsize)
+{
+	double sumarr = 0;
+	for (int i = 0; i < arrsize; i++)
+	{
+		sumarr += mainarr[i];
+	}
+	cout << "sum: " << sumarr << endl;
+}
+
+void mean(double mainarr[], int arrsize)
+{
+	double meanarr = 0;
+	for (int i = 0; i < arrsize; i++)
+	{
+		meanarr += mainarr[i];
+	}
+	cout << "Mean: " << meanarr / arrsize << endl;
+}
+
+
+void edit(double mainarr[], int arrsize)
+{
+	int index;
+	double number;
+	cout << "Enter the index number that you wish to edit: ";
+	cin >> index;
+	while (index >= arrsize || index < 0)
+	{
+		cout << "INVALID, try again." << endl;
+		cin >> index;
+	}
+	cout << "Enter the new number to save at that index: ";
+	cin >> number;
+	mainarr[index] = number;
+}
+
+int main()
+{
+	int choice, arrsize;
+	cout << "Please enter the desired size of the array: ";
+	cin >> arrsize;
+	double *mainarr;
+	mainarr = new double[arrsize];
+	cout << "Please enter enough numbers to fill the array: ";
+	for (int i = 0; i < arrsize; i++)
+	{
+		cin >> mainarr[i];
+	}
+	cout << "\n";
+
+	do
+	{
+		cout << "Please enter 1 to find the sum of the numbers in the array:" << endl;
+		cout << "Please enter 2 to find the mean: " << endl;
+		cout << "Please enter 3 to display the numbers saved:" << endl;
+		cout << "Please enter 4 to edit a single number in the array:" << endl;
+		cout << "Please enter 5 to enter a new array:" << endl;
+		cout << "Enter 6 to Exit: " << endl;
+		cin >> choice;
+		cout << "\n";
+		
+		if (choice == 1)
+		{
+			sum(mainarr, arrsize);
+		}
+		else if (choice == 2)
+		{
+			mean(mainarr, arrsize);
+		}
+		else if (choice == 3)
+		{
+			display(mainarr, arrsize);
+		}
+		else if (choice == 4)
+		{
+			edit(mainarr, arrsize);
+		}
+		else if (choice == 5)
+		{
+			for (int i = 0; i < arrsize; i++)
+			{
+				mainarr[i] = null;
+			}
+			cout << "Please enter the desired size of the array: ";
+			cin >> arrsize;
+			double mainarr;
+			mainarr = new double[arrsize];
+			cout << "Please enter enough numbers to fill the array: ";
+			for (int i = 0; i < arrsize; i++)
+			{
+				cin >> mainarr[i];
+			}
+
+		}
+		else
+		{
+			delete[]mainarr;
+			mainarr = 0;
+			break;
+		}
+	} while (choice != 6);
+
+
+	system("PAUSE");
+	return 0;
+}
