@@ -64,14 +64,11 @@ private:
 
 noRobots: true # Serve robots.txt with disallow
 
-giphy:
-  enable: true
-  rating: pg-13
-  limit: 24
-  apiKey: dc6zaTOxFJmzC
-
 rooms:
   private: false
 
 i18n:
   locale: en
+
+avatars:
+  providers: [gravatar, initials]
